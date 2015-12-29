@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.util.Log;
 
 public class WifiBroadcastReceiver extends BroadcastReceiver {
 
@@ -19,7 +18,6 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
             WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
             WifiInfo wifi = wifiManager.getConnectionInfo();
             String bssid = wifi.getBSSID();
-            Log.e("HomeControl", "Connected to BSSID: " + bssid);
         }
     }
 }

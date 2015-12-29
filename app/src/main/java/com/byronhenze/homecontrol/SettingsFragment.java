@@ -13,6 +13,8 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
     WifiBroadcastReceiver receiver;
 
+    public SettingsFragment() {}
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -12,10 +12,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
+        android:layout_alignParentStart="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
         android:orientation="vertical"
+        android:paddingBottom="2dp"
         android:weightSum="1">
 
         <android.support.v7.widget.Toolbar
@@ -24,7 +25,8 @@
             android:elevation="4dp"
             android:id="@+id/toolbar_settings"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
         </android.support.v7.widget.Toolbar>
         
         <fragment
