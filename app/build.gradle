@@ -14,7 +14,7 @@ android {
     buildTypes {
         all {
             buildConfigField "String", "APP_NAME", "\"HomeControl\""
-            buildConfigField "String", "SERVER_URL", "\"http://192.168.0.250:5000\""
+            buildConfigField "String", "SERVER_URL", "\"http://192.168.0.250:8080\""
         }
         release {
             minifyEnabled false

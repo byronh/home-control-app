@@ -1,7 +1,5 @@
 package com.byronhenze.homecontrol;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,21 +7,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.Request.Method;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.byronhenze.homecontrol.LightControlFragment.OnFragmentInteractionListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener,
-        Listener<JSONObject>,
-        ErrorListener {
+public class MainActivity extends AppCompatActivity implements ErrorListener, Listener<JSONObject> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +28,46 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         this.setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar)this.findViewById(R.id.toolbar_main);
         this.setSupportActionBar(toolbar);
+
+        final Button desktopOnButton = (Button)findViewById(R.id.button_desktop_on);
+        desktopOnButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.toast_desktop_on, Toast.LENGTH_SHORT).show();
+                String url = BuildConfig.SERVER_URL + "/api/desktop/on";
+                JsonObjectRequest request = new JsonObjectRequest(Method.GET, url, null, MainActivity.this, MainActivity.this);
+                VolleySingleton.getInstance().getRequestQueue().add(request);
+            }
+        });
+
+        final Button lightsOnButton = (Button)findViewById(R.id.button_lights_on);
+        lightsOnButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.toast_lights_on, Toast.LENGTH_SHORT).show();
+                String url = BuildConfig.SERVER_URL + "/api/lights/on";
+                JsonObjectRequest request = new JsonObjectRequest(Method.GET, url, null, MainActivity.this, MainActivity.this);
+                VolleySingleton.getInstance().getRequestQueue().add(request);
+            }
+        });
+
+        final Button lightsOffButton = (Button)findViewById(R.id.button_lights_off);
+        lightsOffButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.toast_lights_off, Toast.LENGTH_SHORT).show();
+                String url = BuildConfig.SERVER_URL + "/api/lights/off";
+                JsonObjectRequest request = new JsonObjectRequest(Method.GET, url, null, MainActivity.this, MainActivity.this);
+                VolleySingleton.getInstance().getRequestQueue().add(request);
+            }
+        });
+
+        final Button lightsDimButton = (Button)findViewById(R.id.button_lights_dim);
+        lightsDimButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.toast_lights_dim, Toast.LENGTH_SHORT).show();
+                String url = BuildConfig.SERVER_URL + "/api/lights/dim";
+                JsonObjectRequest request = new JsonObjectRequest(Method.GET, url, null, MainActivity.this, MainActivity.this);
+                VolleySingleton.getInstance().getRequestQueue().add(request);
+            }
+        });
     }
 
     @Override
@@ -52,38 +88,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-        String url = BuildConfig.SERVER_URL + "/api/lights";
-        JsonObjectRequest request = new JsonObjectRequest(Method.GET, url, null, this, this);
-        VolleySingleton.getInstance().getRequestQueue().add(request);
-    }
-
-    @Override
     public void onErrorResponse(VolleyError e) {
         Log.e(BuildConfig.APP_NAME, e.toString());
     }
 
     @Override
     public void onResponse(JSONObject response) {
-        FragmentManager fragmentManager = this.getFragmentManager();
-        try {
-            JSONArray groups = response.getJSONArray("groups");
-            for (int i = 0; i < groups.length(); i++) {
-                JSONObject group = groups.getJSONObject(i);
-                String name = group.getString("name");
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.add(R.id.linearLayout, LightControlFragment.newInstance(name));
-                transaction.commit();
-            }
-        } catch (JSONException e) {
-            Log.e(BuildConfig.APP_NAME, e.toString());
-        }
-    }
-
-    @Override
-    public void onFragmentInteraction(boolean on) {
 
     }
 }
