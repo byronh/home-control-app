@@ -12,62 +12,83 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_alignParentStart="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
         android:orientation="vertical"
         android:weightSum="1">
 
         <android.support.v7.widget.Toolbar
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
             android:id="@+id/toolbar_main"
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp">
         </android.support.v7.widget.Toolbar>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:orientation="horizontal"
             android:paddingTop="10dp">
+
             <Button
+                android:id="@+id/button_desktop_on"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_desktop_on"
-                android:id="@+id/button_desktop_on">
+                android:layout_weight="1"
+                android:text="@string/button_desktop_on">
             </Button>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:orientation="horizontal"
             android:paddingTop="10dp">
+
             <Button
+                android:id="@+id/button_lights_off"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/button_lights_off"
-                android:id="@+id/button_lights_off">
+                android:text="@string/button_lights_off">
             </Button>
+
             <Button
+                android:id="@+id/button_lights_on"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/button_lights_dim"
-                android:id="@+id/button_lights_dim">
+                android:text="@string/button_lights_on">
             </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
             <Button
+                android:id="@+id/button_lights_dim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/button_lights_on"
-                android:id="@+id/button_lights_on">
+                android:text="@string/button_lights_dim">
+            </Button>
+
+            <Button
+                android:id="@+id/button_lights_bright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_lights_bright">
             </Button>
         </LinearLayout>
 

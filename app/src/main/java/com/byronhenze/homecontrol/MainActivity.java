@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements ErrorListener, Li
         Toolbar toolbar = (Toolbar)this.findViewById(R.id.toolbar_main);
         this.setSupportActionBar(toolbar);
 
+        // TODO cleanup
         final Button desktopOnButton = (Button)findViewById(R.id.button_desktop_on);
         desktopOnButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -64,6 +65,16 @@ public class MainActivity extends AppCompatActivity implements ErrorListener, Li
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), R.string.toast_lights_dim, Toast.LENGTH_SHORT).show();
                 String url = BuildConfig.SERVER_URL + "/api/lights/dim";
+                JsonObjectRequest request = new JsonObjectRequest(Method.GET, url, null, MainActivity.this, MainActivity.this);
+                VolleySingleton.getInstance().getRequestQueue().add(request);
+            }
+        });
+
+        final Button lightsBrightButton = (Button)findViewById(R.id.button_lights_bright);
+        lightsBrightButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.toast_lights_bright, Toast.LENGTH_SHORT).show();
+                String url = BuildConfig.SERVER_URL + "/api/lights/bright";
                 JsonObjectRequest request = new JsonObjectRequest(Method.GET, url, null, MainActivity.this, MainActivity.this);
                 VolleySingleton.getInstance().getRequestQueue().add(request);
             }
